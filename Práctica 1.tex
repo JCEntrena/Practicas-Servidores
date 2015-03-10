@@ -1,0 +1,282 @@
+%%%%
+% Modificación de una plantilla de Latex para adaptarla al castellano.
+%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage[usenames,dvipsnames]{color} % Coloring code
+\usepackage{wrapfig} % Allows in-line images
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+% Imágenes
+\usepackage{graphicx} 
+
+\usepackage{amsmath}
+% para importar svg
+%\usepackage[generate=all]{svgfig}
+
+% sudo apt-get install texlive-lang-spanish
+\usepackage[spanish]{babel} % English language/hyphenation
+\selectlanguage{spanish}
+% Hay que pelearse con babel-spanish para el alineamiento del punto decimal
+\decimalpoint
+\usepackage{dcolumn}
+\newcolumntype{d}[1]{D{.}{\esperiod}{#1}}
+\makeatletter
+\addto\shorthandsspanish{\let\esperiod\es@period@code}
+\makeatother
+
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{supertabular}
+
+\usepackage{multicol}
+\newsavebox\ltmcbox
+
+% Símbolos matemáticos
+\usepackage{amssymb}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+%URL's en comentarios
+\usepackage{url}
+
+\usepackage[section]{placeins} % Para gráficas en su sección.
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\newenvironment{allintypewriter}{\ttfamily}{\par}
+\setlength{\parindent}{0pt}
+\parskip=8pt
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+\newcommand{\imagen}[2]{\begin{center} \includegraphics[width=90mm]{#1} \\#2 \end{center}}
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{60pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+\usepackage[hidelinks]{hyperref}
+
+  % Para las enumeraciones anidadas y sus referencias, basado en http://stackoverflow.com/questions/691351/how-to-customize-references-to-sublists-in-latex
+  \renewcommand{\theenumi}{\arabic{enumi}.}
+  \renewcommand{\theenumii}{\arabic{enumii}}
+  \renewcommand{\theenumiii}{\arabic{enumiii}}
+  
+  \renewcommand{\labelenumi}{\theenumi}
+  \renewcommand{\labelenumii}{\theenumi\theenumii.}
+  \renewcommand{\labelenumiii}{\theenumi\theenumii.\theenumiii.}
+  
+  \makeatletter
+  \renewcommand{\p@enumii}{\theenumi}
+  \renewcommand{\p@enumiii}{\theenumi\theenumii.}
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{Práctica 1}\\ % Title
+} % Subtitle
+
+\author{\textsc{José Carlos Entrena} % Author
+\\{\textit{Universidad de Granada}}} % Institution
+
+\date{\today} % Date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Imprime el título.
+
+{\parskip=2pt
+  \tableofcontents
+}   % Índice.
+
+\pagebreak % Cierra la página.
+
+\section{Resolución de los ejercicios}
+
+\subsection*{Ejercicio 1}
+¿Qué modos y tipos de “Virtualización Hardware” existen?
+
+Entendemos la virtualización hardware como la virtualización de distintos sistemas operativos sobre único equipo. 
+Distinguiremos los siguientes tipos de virtualización hardware: 
+\begin{itemize}
+\item Virtualización completa: La máquina virtual virtualiza todo el hardware e instrucciones necesarias para que el sistema que trabajará encima pueda hacerlo de forma completa e independiente a los demás. El software creerá que está en una máquina completa aislada en la que trabaja él. \footnote{\url{http://en.wikipedia.org/wiki/Full_virtualization}}
+\item Virtualización parcial: Virtualiza una parte del hardware de la máquina, haciendo que el sistema operativo que vamos a utilizar pueda no correr completamente en la máquina virtual, pero puedan hacerlo aplicaciones de este. 
+\item Virtualización asistida por hardware: Es una virtualización completa que se ayuda del hardware para mejorar la eficiencia. \footnote{\url{http://en.wikipedia.org/wiki/Hardware-assisted_virtualization}}
+\end{itemize}
+
+\subsection*{Ejercicio 2}
+Busque en Internet ofertas de servicios de, al menos, dos proveedores de VPS (Virtual Private Server) y compare con el precio de alquiler del servicio, con el de uso de servidores dedicados (administrados y no administrados) de características similares.
+
+Hostalia: \\
+- Servidor dedicado: Pentium Dual-Core $2'2$ Ghz, 4 GB RAM, 2 discos duros SATA de 160 GB, 1000 GB de E/S por 99 euros/mes. \\
+- VPS: 2 procesadores XEON (compartidos), 50 GB, 2 GB RAM y 1000 GB de E/S por 18'71 euros/mes
+\footnote{\url{http://www.hostalia.com/}}
+
+Hosteurope: \\
+- VPS: 4GB de RAM garantizada (hasta 8 dinámicamente), 400 GB de almacenamiento, tráfico ilimitado, 1 IP y 1 dominio por 29'99 euros/mes.\\
+- Servidor dedicado: 8 GB RAM, 2 discos duros de 1 TB, tráfico ilimitado, 99 euros/mes (74'25 euros/mes para contratos de 12 meses). 
+\footnote{\url{https://www.hosteurope.es}}
+
+Podemos ver que el uso de servidores dedicados supone un coste mucho mayor, si bien nos dan recursos únicos para nosotros. Sería una opción viable para empresas o un almacenamiendo profesional, pero no para almacenamientos más casuales. 
+
+\subsection*{Ejercicio 3}
+Busque dos soluciones de VMSW alternativas a las propuestas de VMWare
+y Virtual Box. Explique sus principales características y diferencias con las soluciones
+que vamos a emplear en clase.
+
+KVM: Su nombre proviene de Kernel-Based Virtual Machine. Es un VMSW que permite implementar una virtualización completa con Linux. 
+Es software libre de código abierto, que nos permite correr versiones de Linux y Windows.
+\footnote{Referencias: \url{http://www.linux-kvm.org/page/Main_Page} \\ \url{http://es.wikipedia.org/wiki/Kernel-based_Virtual_Machine}}
+
+Bochs: Es un emulador multiplataforma de código abierto escrito en C++ que nos permite ejecutar una gran variedad de sistemas operativos, tales como Windows 95/98/2000/XP o aquellos con arquitectura Unix. Se le da un gran uso en la depuración de sistemas operativos, pues mantiene el sistema anfitrión activo aun cuando el huésped cae. Bochs emula el hardware que ocupa el sistema operativo huésped (discos duros, cd's\dots), lo que provoca una cierta lentitud en la emulación. 
+\footnote{Referencias: \url{http://bochs.sourceforge.net/} \\ \url{http://es.wikipedia.org/wiki/BOCHS}}
+
+\subsection*{Ejercicio 4}
+Enumere las cinco innovaciones en Windows 2012R2 respecto a 2008R2
+que considere más importantes.
+
+\begin{itemize}
+
+\item Windows 2012 puede asignar hasta 1 TB de memoria a cada máquina virtual, por los 64 GB de Windows 2008. 
+\item "Router guard, proporciona seguridad (mediante chequeo de autorización) frente a otras máquinas virtuales que actúan como routers. Implementado en la versión 2012, no en la 2008. 
+\item Migración de almacenamiento. Mientras que en Windows 2008 necesitamos apagar la máquina para mover el almacenamiento, en Windows 2012 se nos permite transferir datos almacenados en discos duros asociados a una máquina en funcionamiento. 
+\item Windows 2012 nos permite reconfigurar la memoria asignada a una máquina virtual cuando esta está en funcionamiento, lo que nos proporciona una gran flexibilidad. Esta carácterística no existe en Windows 2008. 
+\item Recuperación frente a desastres. Windows 2012 nos permite recuperarnos frente a un fallo físico (fallo eléctrico, desastre natural\dots)
+de una forma mucho más barata, rápida y eficaz que Windows 2008. En un fallo, las máquinas virtuales son llevadas un estado consistente para poder ser accedidas al cabo de unos minutos. 
+
+\end{itemize}
+\footnote{\url{http://blogs.technet.com/b/ieitpro/archive/2013/01/29/hyper-v-comparison-windows-server-2008-r2-vs-windows-server-2012.aspx} \\
+\url{http://download.microsoft.com/download/2/C/A/2CA38362-37ED-4112-86A8-FDF14D5D4C9B/WS\%202012\%20Feature\%20Comparison_Hyper-V.pdf}}
+
+\subsection*{Ejercicio 5}
+¿Qué empresa hay detrás de Ubuntu? ¿Qué otros productos/servicios
+ofrece? ¿Qué es MAAS (\url{https://maas.ubuntu.com/})?
+
+Canonical, una empresa cuya misión es crear y distribuir software de código abierto. Además de las distribuciones usuales de Ubuntu, Canonical ofrece software para televisores (Ubuntu Tv), Ubuntu Business Desktop Remix para empresas, Ubuntu Server, etc. También ofrece Landscape, una herramienta de administración/monitorización de sistemas, y MAAS (Metal As A Service). 
+
+MAAS es un servicio que lleva el lenguaje de la nube a servidores físicos, encargándose de la configuración de los servidores. De esta forma se obtienen las ventajas de la nube y de los servidores físicos, consiguiendo velocidad y facilidad de ampliación, entre otras cosas. 
+\footnote{\url{http://www.socialetic.com/que-es-canonical-bienvenido-al-software-libre-ubuntu.html} \\ \url{http://maas.ubuntu.com/}}
+
+
+\subsection*{Ejercicio 6}
+¿Qué relación guardan las distribuciones de Linux CentOS, Fedora y
+RedHat Enterprise Linux? Comente las similitudes y diferencias que le parezcan más
+significativas.
+
+CentOS está basado en RedHat, que a su vez está basado en Fedora. Aunque Fedora y RedHat están bajo la tutela de RedHat (como compañía), Fedora se basa en las contribuciones de la comunidad y es de código abierto, mientras que RedHat está desarrollado y supervisado por la compañía, siendo una versión corporativa y comercial. En estas versiones de RedHat se basa CentOS, que es desarrollado también por la comunidad, siendo un RedHat sin coste pero sin el soporte que ofrece la versión de pago, si bien tiene soporte de la comunidad.
+\footnote{Referencias: \url{https://danielmiessler.com/study/fedora_redhat_centos/}}  
+
+
+\subsection*{Ejercicio 7}
+Busque indicadores de porcentaje de uso global o de cuota de mercado de
+SO de Servidores. No olvide poner la fuente de donde saca la información y preste
+atención a la fecha de ésta.
+
+En la web \url{http://w3techs.com/technologies/overview/operating_system/all} podemos encontrar unos datos generales que nos dicen que el 67'7\% de los servidores utilizados son Unix, mientras que el 32'3\% son Windows, y < 0'1\% OS X. Esta información tiene de fecha el 10 de Marzo de 2015 (día de la redacción de esta respuesta). 
+
+En \url{http://en.wikipedia.org/wiki/Usage_share_of_operating_systems} podemos ver los datos obtenidos de Security Space, que son un 79'3\% para servidores tipo Unix y un 20'7\% para servidores Windows. 
+
+
+
+
+\subsection*{Ejercicio 8}
+a) ¿De qué es el acrónimo RAID? b) ¿Qué tipos de RAID hay? c) ¿Qué
+diferencia hay entre RAID mediante SW y mediante HW? 
+
+Redundant Array of Independent Disks, o conjunto redundante de discos independientes. 
+
+Existen los siguientes tipos de RAID: 
+\begin{itemize}
+\item RAID 0: Distribuye los datos de forma equitativa entre dos o más discos, sin proporcionar información de paridad que nos permita redundancia. Se utiliza normalmente para mejorar el rendimiento, si bien también se puede utilizar para crear varios discos virtuales de gran capacidad a partir de mucho pequeños. 
+\item RAID 1: Crea una copia exacta de un conjunto de datos en dos o más discos, lo que nos permite una lectura mucho más rápida, si bien desperdiciamos espacio. También nos da una mayor integridad en los datos, permitiéndonos trabajar aunque haya un fallo en algún disco. 
+\item RAID 2: Usa una división a nivel de bits con un disco dedicado a paridad para la corrección de errores. Mejora la protección de los datos frente a errores, pero a costa de ralentizar operaciones de E/S, pues el disco de paridad deberá actualizarse. 
+\item RAID 3: Divide los datos a nivel de bytes en lugar de bloques, almacenando cada uno en un disco. Permite tasas de transferencia muy altas, pero se necesitan una alta cantidad de discos (39 en un sistema moderno). No se utiliza en la actualidad. 
+\item RAID 4: Conocido también como IDA, usa división a nivel de bloques con un disco dedicado a paridad. Es similar al RAID 3 salvo que divide por bloques en vez de bytes, lo que permite cada disco funcionar independientemente de los demás, permitiendo lecturas simultáneas de distintos discos. La escritura simultánea sería posible, aunque las actualizaciones del disco de paridad ralentizarían el proceso. 
+\item RAID 5: Implementa una división de datos a nivel de bloques, distribuyendo la información de paridad entre todos los discos. 
+\end{itemize}
+
+\footnote{Referencias: \url{http://es.wikipedia.org/wiki/RAID} (Copia casi textual de las características de los RAID) \\ \url{http://www.dlink.com/-/media/Files/B2B\%20Briefs/ES/dlinkraid.pdf}}
+
+
+\subsection*{Ejercicio 9}
+a) ¿Qué es LVM? b)¿Qué ventaja tiene para un servidor de gama baja? c)
+Si va a tener un servidor web, ¿le daría un tamaño grande o pequeño a /var?
+
+
+\subsection*{Ejercicio 10}
+¿Es conveniente cifrar también el volumen que contiene el espacio para
+swap? ¿Por qué no es posible cifrar el volumen en el que montaremos /boot?
+
+
+\subsection*{Ejercicio 11}
+¿Cuál es la diferencia más significativa entre ext3 y ext2?
+
+
+\subsection*{Ejercicio 12}
+Muestre cómo ha quedado el disco particionado una vez el sistema está
+instalado.
+
+
+\subsection*{Ejercicio 13}
+a) ¿Cómo ha hecho el disco 2 “arrancable”? //
+b) ¿Qué hace el comando grub-install?
+
+
+\subsection*{Ejercicio 14}
+¿Cuál es la principal diferencia hay entre las versiones Standard y
+Datacenter de Windows 2012?
+
+
+\subsection*{Ejercicio 15}
+Continúe usted con el proceso de definición de RAID1 para los dos discos
+de 50MiB que ha creado. Muestre el proceso con capturas de pantalla
+
+
+\subsection*{Ejercicio 16}
+Configure la red virtual entre las máquinas Guest y Host de forma que
+haya comunicación de red entre ellas y la máquina Guest pueda acceder a Internet
+empleando la conexión de la máquina Host. Explique las opciones de configuración
+posibles, y la elegida. Muestre con capturas de pantalla cómo queda la configuración
+de la red y cómo comprueba la conectividad entre máquinas y el acceso a Internet.
+
+
+
+\end{document}
