@@ -141,6 +141,7 @@ Distinguiremos los siguientes tipos de virtualización hardware:
 \item Virtualización parcial: Virtualiza una parte del hardware de la máquina, haciendo que el sistema operativo que vamos a utilizar pueda no correr completamente en la máquina virtual, pero puedan hacerlo aplicaciones de este. 
 \item Virtualización asistida por hardware: Es una virtualización completa que se ayuda del hardware para mejorar la eficiencia. \footnote{\url{http://en.wikipedia.org/wiki/Hardware-assisted_virtualization}}
 \end{itemize}
+\footnote{\url{http://en.wikipedia.org/wiki/Hardware_virtualization}}
 
 \subsection*{Ejercicio 2}
 Busque en Internet ofertas de servicios de, al menos, dos proveedores de VPS (Virtual Private Server) y compare con el precio de alquiler del servicio, con el de uso de servidores dedicados (administrados y no administrados) de características similares.
@@ -230,9 +231,22 @@ Existen los siguientes tipos de RAID:
 \item RAID 2: Usa una división a nivel de bits con un disco dedicado a paridad para la corrección de errores. Mejora la protección de los datos frente a errores, pero a costa de ralentizar operaciones de E/S, pues el disco de paridad deberá actualizarse. 
 \item RAID 3: Divide los datos a nivel de bytes en lugar de bloques, almacenando cada uno en un disco. Permite tasas de transferencia muy altas, pero se necesitan una alta cantidad de discos (39 en un sistema moderno). No se utiliza en la actualidad. 
 \item RAID 4: Conocido también como IDA, usa división a nivel de bloques con un disco dedicado a paridad. Es similar al RAID 3 salvo que divide por bloques en vez de bytes, lo que permite cada disco funcionar independientemente de los demás, permitiendo lecturas simultáneas de distintos discos. La escritura simultánea sería posible, aunque las actualizaciones del disco de paridad ralentizarían el proceso. 
-\item RAID 5: Implementa una división de datos a nivel de bloques, distribuyendo la información de paridad entre todos los discos. 
+\item RAID 5: Implementa una división de datos a nivel de bloques, distribuyendo la información de paridad entre todos los discos. Esto hace que la escritura sea costosa, pues se necesitas muchas operaciones de disco para mantener los datos de paridad. Estos datos no serán consultados salvo que se detecte un error, para evitar accesos a disco innecesarios. De esta forma también tenemos una protección frente a fallos, permitiéndonos recuperar datos perdidos. Sin embargo esta protección solo es efectiva si falla un disco. 
+\item RAID 6: Es una ampliación del RAID 5 añadiendo un segundo bloque de paridad, lo que produce una mayor sobrecarga, aunque nos proporciona una mayor protección sobre los datos almacenados. 
+
 \end{itemize}
 
+De estos niveles, los más usuales son el 0, 1 y 5.
+Existen también lo que se conoce como niveles anidados, utilizando RAID y no discos como elementos básicos de un segundo RAID. Dentro de este conjunto encontramos: 
+\begin{itemize}
+\item RAID 0+1
+\item RAID 1+0
+\item RAID 30
+\item RAID 100
+\item RAID 10+1
+\end{itemize}
+
+En los niveles 5 y 6 existe una variante, llamadas 5E y 6E respectivamente, que incluyen discos de reserva. Dichos discos no suponen una mejora del rendimiento, sino que son utilizados para acelerar el proceso de recuperación ante fallos. 
 \footnote{Referencias: \url{http://es.wikipedia.org/wiki/RAID} (Copia casi textual de las características de los RAID) \\ \url{http://www.dlink.com/-/media/Files/B2B\%20Briefs/ES/dlinkraid.pdf}}
 
 
