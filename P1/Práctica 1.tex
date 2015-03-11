@@ -254,14 +254,26 @@ En los niveles 5 y 6 existe una variante, llamadas 5E y 6E respectivamente, que 
 a) ¿Qué es LVM? b)¿Qué ventaja tiene para un servidor de gama baja? c)
 Si va a tener un servidor web, ¿le daría un tamaño grande o pequeño a /var?
 
+Son las siglas del administrador de volúmenes lógicos (del inglés Logical Volume Manager) para el kernel Linux. 
+En un servidor de gama baja, nos permite redimensionar los volúmenes lógicos a nuestro gusto, incluso pudiendo dejar una parte sin asignar al sistema y hacerlo en el futuro en caso de necesitarlo. 
+\footnote{\url{http://es.wikipedia.org/wiki/Logical_Volume_Manager}}
+
+En /var se almacenará el servicio que tengamos en el servidor web, por tanto asignaría un espacio grande al directorio, pues es posible que se necesite más espacio si queremos ampliar el contenido. 
+
 
 \subsection*{Ejercicio 10}
 ¿Es conveniente cifrar también el volumen que contiene el espacio para
 swap? ¿Por qué no es posible cifrar el volumen en el que montaremos /boot?
 
+Sí, pues nos permite proteger información que se mantiene en el swap incluso después de reiniciar la máquina. 
+\footnote{\url{http://askubuntu.com/questions/313564/why-encrypt-the-swap-partition}}
+
+No podemos cifrar el volumen en el que montaremos /boot porque nos sería imposible descifrarlo, ya que el sistema operativo aun no habría arrancado, y no tendríamos acceso a ningún sistema de archivos que nos permitiera obtener la clave de cifrado para descifrar /boot y operar con normalidad. 
 
 \subsection*{Ejercicio 11}
 ¿Cuál es la diferencia más significativa entre ext3 y ext2?
+
+El registro por diario, o journaling, que almacena la información necesaria para restablecer los datos de una transacción en caso de que falle. \footnote{\url{http://es.wikipedia.org/wiki/Ext3} \\ \url{http://es.wikipedia.org/wiki/Journaling}}
 
 
 \subsection*{Ejercicio 12}
