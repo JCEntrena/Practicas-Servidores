@@ -258,7 +258,7 @@ Son las siglas del administrador de volúmenes lógicos (del inglés Logical Vol
 En un servidor de gama baja, nos permite redimensionar los volúmenes lógicos a nuestro gusto, incluso pudiendo dejar una parte sin asignar al sistema y hacerlo en el futuro en caso de necesitarlo. 
 \footnote{\url{http://es.wikipedia.org/wiki/Logical_Volume_Manager}}
 
-En /var se almacenará el servicio que tengamos en el servidor web, por tanto asignaría un espacio grande al directorio, pues es posible que se necesite más espacio si queremos ampliar el contenido. 
+En /var se almacenará el servicio que tengamos en el servidor web, por tanto asignaría un espacio grande al directorio, pues es posible que se necesite más espacio si queremos ampliar el contenido. En caso de disponer de LVM, podríamos asignar un espacio pequeño al principio y redimensionar conforme necesitásemos más espacio. 
 
 
 \subsection*{Ejercicio 10}
@@ -275,11 +275,13 @@ No podemos cifrar el volumen en el que montaremos /boot porque nos sería imposi
 
 El registro por diario, o journaling, que almacena la información necesaria para restablecer los datos de una transacción en caso de que falle. \footnote{\url{http://es.wikipedia.org/wiki/Ext3} \\ \url{http://es.wikipedia.org/wiki/Journaling}}
 
+\pagebreak
 
 \subsection*{Ejercicio 12}
 Muestre cómo ha quedado el disco particionado una vez el sistema está
 instalado.
 
+\includegraphics{../../../../MV}
 
 \subsection*{Ejercicio 13}
 a) ¿Cómo ha hecho el disco 2 “arrancable”? //
@@ -289,6 +291,8 @@ b) ¿Qué hace el comando grub-install?
 \subsection*{Ejercicio 14}
 ¿Cuál es la principal diferencia hay entre las versiones Standard y
 Datacenter de Windows 2012?
+
+El número de instancias que se pueden instalar. Mientras que en la versión Standard se reduce a 2, aparte del host, la versión Datacenter no pone límite. \footnote{\url{http://windowsserver2012.itpro.co.uk/business-benefits/72/which-version-windows-server-2012-should-i-choose}}
 
 
 \subsection*{Ejercicio 15}
