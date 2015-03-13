@@ -203,7 +203,7 @@ RedHat Enterprise Linux? Comente las similitudes y diferencias que le parezcan m
 significativas.
 
 CentOS está basado en RedHat, que a su vez está basado en Fedora. Aunque Fedora y RedHat están bajo la tutela de RedHat (como compañía), Fedora se basa en las contribuciones de la comunidad y es de código abierto, mientras que RedHat está desarrollado y supervisado por la compañía, siendo una versión corporativa y comercial. En estas versiones de RedHat se basa CentOS, que es desarrollado también por la comunidad, siendo un RedHat sin coste pero sin el soporte que ofrece la versión de pago, si bien tiene soporte de la comunidad.
-\footnote{Referencias: \url{https://danielmiessler.com/study/fedora_redhat_centos/}}  
+\footnote{\url{https://danielmiessler.com/study/fedora_redhat_centos/}}  
 
 
 \subsection*{Ejercicio 7}
@@ -214,6 +214,8 @@ atención a la fecha de ésta.
 En la web \url{http://w3techs.com/technologies/overview/operating_system/all} podemos encontrar unos datos generales que nos dicen que el 67'7\% de los servidores utilizados son Unix, mientras que el 32'3\% son Windows, y < 0'1\% OS X. Esta información tiene de fecha el 10 de Marzo de 2015 (día de la redacción de esta respuesta). 
 
 En \url{http://en.wikipedia.org/wiki/Usage_share_of_operating_systems} podemos ver los datos obtenidos de Security Space, que son un 79'3\% para servidores tipo Unix y un 20'7\% para servidores Windows. 
+
+Es difícil encontrar datos de este tipo en la web. Aunque he encontrado algunos más, al carecer de referencias fiables (o bien no se podían consultar, o simplemente eran comentarios sin ninguna referencia) he decidido no incluirlas. 
 
 
 
@@ -281,11 +283,18 @@ El registro por diario, o journaling, que almacena la información necesaria par
 Muestre cómo ha quedado el disco particionado una vez el sistema está
 instalado.
 
-\includegraphics{../../../../MV}
+Podemos verlo en la Figura 1. 
+
+\begin{figure}[htpb]
+\includegraphics[width=\textwidth]{../../../../MV}
+\caption{Captura de pantalla.}
+\end{figure}
 
 \subsection*{Ejercicio 13}
 a) ¿Cómo ha hecho el disco 2 “arrancable”? //
 b) ¿Qué hace el comando grub-install?
+
+Utilizando el comando grub-install sobre /dev/sdb, que es el segundo disco que tenemos. grub-install, sobre el disco, lo hace arrancable. 
 
 
 \subsection*{Ejercicio 14}
@@ -297,7 +306,56 @@ El número de instancias que se pueden instalar. Mientras que en la versión Sta
 
 \subsection*{Ejercicio 15}
 Continúe usted con el proceso de definición de RAID1 para los dos discos
-de 50MiB que ha creado. Muestre el proceso con capturas de pantalla
+de 50MiB que ha creado. Muestre el proceso con capturas de pantalla.
+
+Inicialmente elegimos el tipo de RAID. Como queremos un RAID 1, elegimos New Mirroring Volume (Figura 2). 
+
+\begin{figure}[htpb]
+\includegraphics[height=10cm]{../../../../1}
+\caption{Selección del RAID.}
+\end{figure}
+
+Continuamos eligiendo los discos que van a formar el RAID. Añadimos el disco 2. (Figura 3)
+
+\begin{figure}[htpb]
+\includegraphics[height=10cm]{../../../../Discos}
+\caption{Selección de discos.}
+\end{figure}
+
+\pagebreak
+
+Después, elegimos un nombre para el RAID y formateamos los discos. (Figura 4)
+
+\begin{figure}[htpb]
+\includegraphics[height=10cm]{../../../../pathformato}
+\caption{Formateo.}
+\end{figure}
+
+\pagebreak
+
+Finalizamos el proceso (Figura 5) y aplicamos los cambios a los discos (Figura 6).
+
+\begin{figure}[htpb]
+\includegraphics[height=10cm]{../../../../final}
+\caption{Finalización.}
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[htpb]
+\includegraphics[height=10cm]{../../../../final2}
+\caption{Cambio en los discos.}
+\end{figure}
+
+\pagebreak
+
+Vemos que los cambios se han realizado, pues los discos están marcados como espejados. (Figura 7)
+
+\begin{figure}[htpb]
+\includegraphics[height=10cm]{../../../../observacion}
+\caption{Comprobación.}
+\end{figure}
+
 
 
 \subsection*{Ejercicio 16}
