@@ -1,0 +1,213 @@
+%%%%
+% Modificación de una plantilla de Latex para adaptarla al castellano.
+%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage[usenames,dvipsnames]{color} % Coloring code
+\usepackage{wrapfig} % Allows in-line images
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+% Imágenes
+\usepackage{graphicx} 
+
+\usepackage{amsmath}
+% para importar svg
+%\usepackage[generate=all]{svgfig}
+
+% sudo apt-get install texlive-lang-spanish
+\usepackage[spanish]{babel} % English language/hyphenation
+\selectlanguage{spanish}
+% Hay que pelearse con babel-spanish para el alineamiento del punto decimal
+\decimalpoint
+\usepackage{dcolumn}
+\newcolumntype{d}[1]{D{.}{\esperiod}{#1}}
+\makeatletter
+\addto\shorthandsspanish{\let\esperiod\es@period@code}
+\makeatother
+
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{supertabular}
+
+\usepackage{multicol}
+\newsavebox\ltmcbox
+
+% Símbolos matemáticos
+\usepackage{amssymb}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+%URL's en comentarios
+\usepackage{url}
+
+\usepackage[section]{placeins} % Para gráficas en su sección.
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\newenvironment{allintypewriter}{\ttfamily}{\par}
+\setlength{\parindent}{0pt}
+\parskip=8pt
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+\newcommand{\imagen}[2]{\begin{center} \includegraphics[width=90mm]{#1} \\#2 \end{center}}
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{60pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+\usepackage[hidelinks]{hyperref}
+
+  % Para las enumeraciones anidadas y sus referencias, basado en http://stackoverflow.com/questions/691351/how-to-customize-references-to-sublists-in-latex
+  \renewcommand{\theenumi}{\arabic{enumi}.}
+  \renewcommand{\theenumii}{\arabic{enumii}}
+  \renewcommand{\theenumiii}{\arabic{enumiii}}
+  
+  \renewcommand{\labelenumi}{\theenumi}
+  \renewcommand{\labelenumii}{\theenumi\theenumii.}
+  \renewcommand{\labelenumiii}{\theenumi\theenumii.\theenumiii.}
+  
+  \makeatletter
+  \renewcommand{\p@enumii}{\theenumi}
+  \renewcommand{\p@enumiii}{\theenumi\theenumii.}
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{Práctica 1}\\ % Title
+} % Subtitle
+
+\author{\textsc{José Carlos Entrena} % Author
+\\{\textit{Universidad de Granada}}} % Institution
+
+\date{\today} % Date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Imprime el título.
+
+{\parskip=2pt
+  \tableofcontents
+}   % Índice.
+
+\pagebreak % Cierra la página.
+
+\section{Resolución de los ejercicios}
+
+\subsection{Ejercicio 1}
+Proporcione ejemplos de llamada a a yum para buscar, instalar y eliminar
+paquetes (Pista: man yum)
+
+
+\subsection{Ejercicio 2}
+¿Qué ha de hacer para que yum pueda tener acceso a Internet a través
+de un proxy?(Pistas: archivo de configuración en /etc, proxy: stargate.ugr.es:3128).
+¿Cómo añadimos un nuevo repositorio?
+
+
+\subsection{Ejercicio 3}
+Proporcione ejemplos de comandos para buscar un paquete en un
+repositorio y el correspondiente para instalarlo. (Pista: man apt-get ; man apt-cache)
+
+
+\subsection{Ejercicio 4}
+Indiqué como debe modificar la configuración de apt para acceder a los
+repositorios a través del proxy. ¿Cómo añadimos un nuevo repositorio?
+
+
+\subsection{Ejercicio 5}
+¿Qué diferencia hay entre telnet y ssh?
+
+
+\subsection{Ejercicio 6}
+Modifique la configuración de SSH para que impida el acceso remoto del
+usuario root y cambie el puerto por defecto. Indique las líneas modificadas en el
+fichero de configuración y ponga de manifiesto el cambio mediante capturas de
+pantallas en las que se aprecie el comportamiento antes y después de los cambios.
+Tenga en cuenta que debe reiniciar el servicio para que tome los cambios.
+
+
+\subsection{Ejercicio 7}
+Configure una instancia de Linux de forma que pueda acceder
+remotamente (desde otra instancia o desde su anfitrión) sin introducir contraseña
+(Pistas: ssh-keygen, ssh-copy-id). Documente el proceso que ha seguido indicando y
+explicando los comandos utilizados así como posibles cambios en la configuración del
+servicio. Muestre con capturas de pantalla que puede conectar al servidor ssh remoto
+sin introducir contraseña.
+
+
+\subsection{Ejercicio 8}
+En muchas ocasiones es necesario reiniciar un servicio para que tome los
+cambios en su configuración. Indique los comandos que puede emplear en Ubuntu y
+CentOS para hacerlo.
+
+
+\subsection{Ejercicio 9}
+Ponga de manifiesto el funcionamiento de PHP en Apache creando un
+fichero php que presente su nombre y apellidos y accediéndolo con un navegador web
+Presente la captura de pantalla del resultado. Ponga de manifiesto el funcionamiento
+de MySQL accediendo a la BBDDs por defecto (mysql) y consultando los usuarios
+definidos en el sistema (select * from user). Documente con capturas de pantalla el
+acceso y resultado de la consulta.
+
+
+\subsection{Ejercicio 10}
+Para poner de manifiesto que el servidor está funcionando, acceda con
+un navegador web a su propio equipo (localhost). Cree una página HTML básica con su
+nombre y apellidos y publíquela en su servidor IIS. Muestre, con una captura de
+pantalla, como accede a dicha página con el navegador web.
+
+
+\subsection{Ejercicio 11}
+Escriba un breve contenido en un fichero de texto plano, cópielo y
+modifíquelo ligeramente en un segundo archivo, por ejemplo, añadiendo un par de
+líneas. Calcule las diferencias entre el fichero original y el modificado. Indique los
+comandos necesarios para aplicar el parche así generado sobre el primer archivo y
+obtener el segundo. Documente el proceso con capturas de pantalla de cada paso.
+
+
+\subsection{Ejercicio 12}
+Realice la instalación de esta aplicación y pruebe a modificar algún
+parámetro de algún servicio. Muestre las capturas de el proceso de modificación y
+ponga de manifiesto el resultado.
+
+
+
+\end{document}
