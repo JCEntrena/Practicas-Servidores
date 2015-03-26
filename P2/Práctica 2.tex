@@ -131,21 +131,61 @@
 
 \section{Resolución de los ejercicios}
 
+
 \subsection{Ejercicio 1}
-Proporcione ejemplos de llamada a a yum para buscar, instalar y eliminar
+Proporcione ejemplos de llamada a yum para buscar, instalar y eliminar
 paquetes (Pista: man yum)
 
+Para buscar paquetes utilizaremos la orden yum search 'paquete', aunque podemos usar yum list si conocemos el nombre completo.
+
+Si queremos instalar un paquete, utilizaremos la orden yum install 'paquete', o yum reinstall, para reinstalar uno que ya tenemos. 
+
+Finalmente, si lo que queremos es eliminar un paquete, requeriremos de la orden  yum remove 'paquete', o yum erase. Nótese que también se eliminan los paquetes dependientes del que eliminamos, y que existen ciertos paquetes protegidos contra el borrado (el propio yum, por ejemplo).\footnote{Referencias: man yum}
 
 \subsection{Ejercicio 2}
 ¿Qué ha de hacer para que yum pueda tener acceso a Internet a través
 de un proxy?(Pistas: archivo de configuración en /etc, proxy: stargate.ugr.es:3128).
-¿Cómo añadimos un nuevo repositorio?
+¿Cómo añadimos un nuevo repositorio? 
 
+En el archivo de configuración /etc/yum.conf hemos de añadir la línea: 
+proxy = http://proxy-host:proxy-port
+
+Para la autenticación, en caso de ser necesaria, tendremos las líneas:\\
+proxy-username=proxy-username\\
+proxy-password=proxy-password \footnote{\url{https://docs.openathens.net/display/public/OALA221/Configuring+yum+to+use+a+proxy+server;jsessionid=1ADC56498F0FF545643F622A5322B447}}
+
+Para añadir un repositorio, tenemos varias formas: 
+
+	La primera de ellas es a través del archivo /etc/yum.conf, añadiendo una sección [repository] y dentro de ella los repositorios de la forma: 
+
+	[repository ID]\\
+	name=repo-name\\
+	baseurl=url, archivo o ftp://repo-path\footnote{\url{https://www.centos.org/docs/5/html/5.2/Deployment_Guide/s1-yum-yumconf-repository.html}}
+	
+	La segunda forma es añadirlo mediante línea de comandos, ejecutando la siguiente órden como root: 
+	
+	\begin{center} yum-config-manager --add-repo repo-url \end{center}
+
+	La tercera y última forma es añadir el repositorio en formato .repo al archivo /etc/yum.repos.d, de la misma forma que en /etc/yum.conf 
+	
+	Para utilizar este repositorio deberemos activarlo, o bien estableciendo el parámetro enabled=1 en el archivo de configuración correspondiente, o desde línea de comandos, con la orden (en modo root):
+	
+	\begin{center} yum-config-manager --enable repo-name\footnote{\url{https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/sec-Managing_Yum_Repositories.html}} \end{center}
+	
 
 \subsection{Ejercicio 3}
 Proporcione ejemplos de comandos para buscar un paquete en un
 repositorio y el correspondiente para instalarlo. (Pista: man apt-get ; man apt-cache)
 
+Para instalar un paquete en Ubuntu Server hemos de utilizar el comando: 
+
+\begin{center} "sudo apt-get install 'paquete'" \end{center} 
+
+mientras que para buscar un paquete usaremos 
+
+\begin{center} "sudo apt-cache search 'paquete'" \end{center} 
+
+Por ejemplo, para buscar un programa de ajedrez, ejecutaremos sudo apt-cache search chess, y para instalar el paquete chessx, sudo apt-get install chessx.\footnote{Referencias: man apt-get, man apt-cache}
 
 \subsection{Ejercicio 4}
 Indiqué como debe modificar la configuración de apt para acceder a los
@@ -154,6 +194,8 @@ repositorios a través del proxy. ¿Cómo añadimos un nuevo repositorio?
 
 \subsection{Ejercicio 5}
 ¿Qué diferencia hay entre telnet y ssh?
+
+SSH cifra toda la conexión proporcionando un buen nivel de seguridad, mientras que telnet no cifra nada, enviando la información en texto plano.
 
 
 \subsection{Ejercicio 6}
@@ -178,6 +220,13 @@ En muchas ocasiones es necesario reiniciar un servicio para que tome los
 cambios en su configuración. Indique los comandos que puede emplear en Ubuntu y
 CentOS para hacerlo.
 
+Aunque depende del servicio en cuestión, la forma más usual de reiniciar un servicio es la siguiente: 
+
+En CentOS, poniendo como ejemplo a MySQL; el comando a ejecutar sería: sudo /etc/init.d/mysqld restart'. 
+
+En Ubuntu, poniendo como ejemplo a apache, deberíamos ejecutar el comando: 'sudo /etc/init.d/apache2 restart'. 
+
+En general, iremos a donde el servicio esté alojado y ejecutaremos el comando asignado a cada uno para reiniciarlo. 
 
 \subsection{Ejercicio 9}
 Ponga de manifiesto el funcionamiento de PHP en Apache creando un
