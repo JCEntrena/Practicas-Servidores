@@ -164,13 +164,13 @@ Para añadir un repositorio, tenemos varias formas:
 	
 	La segunda forma es añadirlo mediante línea de comandos, ejecutando la siguiente órden como root: 
 	
-	\begin{center} yum-config-manager --add-repo repo-url \end{center}
+	yum-config-manager --add-repo repo-url
 
 	La tercera y última forma es añadir el repositorio en formato .repo al archivo /etc/yum.repos.d, de la misma forma que en /etc/yum.conf 
 	
 	Para utilizar este repositorio deberemos activarlo, o bien estableciendo el parámetro enabled=1 en el archivo de configuración correspondiente, o desde línea de comandos, con la orden (en modo root):
 	
-	\begin{center} yum-config-manager --enable repo-name\footnote{\url{https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/sec-Managing_Yum_Repositories.html}} \end{center}
+	yum-config-manager --enable repo-name\footnote{\url{https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/sec-Managing_Yum_Repositories.html}} 
 	
 
 \subsection{Ejercicio 3}
@@ -179,18 +179,29 @@ repositorio y el correspondiente para instalarlo. (Pista: man apt-get ; man apt-
 
 Para instalar un paquete en Ubuntu Server hemos de utilizar el comando: 
 
-\begin{center} "sudo apt-get install 'paquete'" \end{center} 
+"sudo apt-get install 'paquete'" 
 
 mientras que para buscar un paquete usaremos 
 
-\begin{center} "sudo apt-cache search 'paquete'" \end{center} 
+"sudo apt-cache search 'paquete'" 
 
 Por ejemplo, para buscar un programa de ajedrez, ejecutaremos sudo apt-cache search chess, y para instalar el paquete chessx, sudo apt-get install chessx.\footnote{Referencias: man apt-get, man apt-cache}
 
 \subsection{Ejercicio 4}
-Indiqué como debe modificar la configuración de apt para acceder a los
-repositorios a través del proxy. ¿Cómo añadimos un nuevo repositorio?
+Indiqué como debe modificar la configuración de apt para acceder a los repositorios a través del proxy. ¿Cómo añadimos un nuevo repositorio?
 
+Primero configuramos la dirección http con el comando: 
+
+export http\_proxy=http://<proxy>:<port>   o \\
+export https\_proxy=http://<proxy>:<port>
+
+después ejecutamos la orden: 
+
+sudo -E add-apt-repository repositorio
+
+y en caso de ser necesario un login, usamos: 
+
+export https\_proxy=<username>:<password>@<proxy>:<port>\footnote{\url{http://askubuntu.com/questions/53146/how-do-i-get-add-apt-repository-to-work-through-a-proxy}}
 
 \subsection{Ejercicio 5}
 ¿Qué diferencia hay entre telnet y ssh?
@@ -199,11 +210,7 @@ SSH cifra toda la conexión proporcionando un buen nivel de seguridad, mientras 
 
 
 \subsection{Ejercicio 6}
-Modifique la configuración de SSH para que impida el acceso remoto del
-usuario root y cambie el puerto por defecto. Indique las líneas modificadas en el
-fichero de configuración y ponga de manifiesto el cambio mediante capturas de
-pantallas en las que se aprecie el comportamiento antes y después de los cambios.
-Tenga en cuenta que debe reiniciar el servicio para que tome los cambios.
+Modifique la configuración de SSH para que impida el acceso remoto del usuario root y cambie el puerto por defecto. Indique las líneas modificadas en el fichero de configuración y ponga de manifiesto el cambio mediante capturas de pantallas en las que se aprecie el comportamiento antes y después de los cambios. Tenga en cuenta que debe reiniciar el servicio para que tome los cambios.
 
 
 \subsection{Ejercicio 7}
