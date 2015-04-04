@@ -183,7 +183,7 @@ Para instalar un paquete en Ubuntu Server hemos de utilizar el comando:
 
 mientras que para buscar un paquete usaremos 
 
-"sudo apt-cache search 'paquete'" 
+"apt-cache search 'paquete'" 
 
 Por ejemplo, para buscar un programa de ajedrez, ejecutaremos sudo apt-cache search chess, y para instalar el paquete chessx, sudo apt-get install chessx.\footnote{Referencias: man apt-get, man apt-cache}
 
@@ -212,57 +212,84 @@ SSH cifra toda la conexión proporcionando un buen nivel de seguridad, mientras 
 \subsection{Ejercicio 6}
 Modifique la configuración de SSH para que impida el acceso remoto del usuario root y cambie el puerto por defecto. Indique las líneas modificadas en el fichero de configuración y ponga de manifiesto el cambio mediante capturas de pantallas en las que se aprecie el comportamiento antes y después de los cambios. Tenga en cuenta que debe reiniciar el servicio para que tome los cambios.
 
+Tendremos que modificar el archivo de configuración /etc/ssh/sshd\_config para poder hacer estos cambios. Para modificar el puerto por defecto solo tenemos que modificar el parámetro puerto en el archivo, especificando el nuevo puerto que queremos usar, y para permitir que el root no pueda loguearse, cambiaremos la línea PermitRootLogin para ajustarla a "no".\footnote{\url{https://www.digitalocean.com/community/tutorials/how-to-use-ssh-to-connect-to-a-remote-server-in-ubuntu}}
+
+Podemos ver los cambios en las figuras 1 y 2. 
+
+\pagebreak
+
+\begin{figure}[htpb]
+\includegraphics[height=11cm]{../../../../root}
+\caption{Cambio de puerto y denegación a root.}
+\end{figure}
+
+\pagebreak 
+
+\begin{figure}[htpb]
+\includegraphics[height=11cm]{../../../../login}
+\caption{Correcto funcionamiento con mi usuario.}
+\end{figure}
+
 
 \subsection{Ejercicio 7}
-Configure una instancia de Linux de forma que pueda acceder
-remotamente (desde otra instancia o desde su anfitrión) sin introducir contraseña
-(Pistas: ssh-keygen, ssh-copy-id). Documente el proceso que ha seguido indicando y
-explicando los comandos utilizados así como posibles cambios en la configuración del
-servicio. Muestre con capturas de pantalla que puede conectar al servidor ssh remoto
-sin introducir contraseña.
+Configure una instancia de Linux de forma que pueda acceder remotamente (desde otra instancia o desde su anfitrión) sin introducir contraseña (Pistas: ssh-keygen, ssh-copy-id). Documente el proceso que ha seguido indicando y explicando los comandos utilizados así como posibles cambios en la configuración del servicio. Muestre con capturas de pantalla que puede conectar al servidor ssh remoto sin introducir contraseña.
 
 
 \subsection{Ejercicio 8}
-En muchas ocasiones es necesario reiniciar un servicio para que tome los
-cambios en su configuración. Indique los comandos que puede emplear en Ubuntu y
-CentOS para hacerlo.
+En muchas ocasiones es necesario reiniciar un servicio para que tome los cambios en su configuración. Indique los comandos que puede emplear en Ubuntu y CentOS para hacerlo.
 
 Aunque depende del servicio en cuestión, la forma más usual de reiniciar un servicio es la siguiente: 
 
 En CentOS, poniendo como ejemplo a MySQL; el comando a ejecutar sería: sudo /etc/init.d/mysqld restart'. 
 
-En Ubuntu, poniendo como ejemplo a apache, deberíamos ejecutar el comando: 'sudo /etc/init.d/apache2 restart'. 
+En Ubuntu, poniendo como ejemplo a apache, deberíamos ejecutar el comando: 'sudo /etc/init.d/apache2 restart'. Para ssh, que lo hemos usado anteriormente, podemos usar 'sudo restart ssh'. 
 
 En general, iremos a donde el servicio esté alojado y ejecutaremos el comando asignado a cada uno para reiniciarlo. 
 
 \subsection{Ejercicio 9}
-Ponga de manifiesto el funcionamiento de PHP en Apache creando un
-fichero php que presente su nombre y apellidos y accediéndolo con un navegador web
-Presente la captura de pantalla del resultado. Ponga de manifiesto el funcionamiento
-de MySQL accediendo a la BBDDs por defecto (mysql) y consultando los usuarios
-definidos en el sistema (select * from user). Documente con capturas de pantalla el
-acceso y resultado de la consulta.
+Ponga de manifiesto el funcionamiento de PHP en Apache creando un fichero php que presente su nombre y apellidos y accediéndolo con un navegador web. Presente la captura de pantalla del resultado. Ponga de manifiesto el funcionamiento de MySQL accediendo a la BBDDs por defecto (mysql) y consultando los usuarios definidos en el sistema (select * from user). Documente con capturas de pantalla el acceso y resultado de la consulta.
+
+
+
+MySQL, en Ubuntu Server. 
+
+Iniciamos MySQL con el comando mysql -u root -p, y una vez dentro, elegimos la base de datos por defecto con use mysql, y ejecutamos la sentencia dada. En la siguiente figura podemos ver un extracto del resultado.\footnote{Me ha sido imposible copiar la consulta completa, pues Ubuntu Server no me deja ver más que lo que se muestra en pantalla, no pudiendo subir a ver el resto.}
+
+\begin{figure}[htpb]
+\includegraphics[height=11cm]{../../../../sql}
+\caption{Consulta a la base de datos. }
+\end{figure}
 
 
 \subsection{Ejercicio 10}
-Para poner de manifiesto que el servidor está funcionando, acceda con
-un navegador web a su propio equipo (localhost). Cree una página HTML básica con su
-nombre y apellidos y publíquela en su servidor IIS. Muestre, con una captura de
-pantalla, como accede a dicha página con el navegador web.
+Para poner de manifiesto que el servidor está funcionando, acceda con un navegador web a su propio equipo (localhost). Cree una página HTML básica con su nombre y apellidos y publíquela en su servidor IIS. Muestre, con una captura de pantalla, como accede a dicha página con el navegador web.
 
 
 \subsection{Ejercicio 11}
-Escriba un breve contenido en un fichero de texto plano, cópielo y
-modifíquelo ligeramente en un segundo archivo, por ejemplo, añadiendo un par de
-líneas. Calcule las diferencias entre el fichero original y el modificado. Indique los
-comandos necesarios para aplicar el parche así generado sobre el primer archivo y
-obtener el segundo. Documente el proceso con capturas de pantalla de cada paso.
+Escriba un breve contenido en un fichero de texto plano, cópielo y modifíquelo ligeramente en un segundo archivo, por ejemplo, añadiendo un par de líneas. Calcule las diferencias entre el fichero original y el modificado. Indique los comandos necesarios para aplicar el parche así generado sobre el primer archivo y obtener el segundo. Documente el proceso con capturas de pantalla de cada paso.
+
+Ejercicio hecho en Ubuntu Server. 
+
+He creado dos archivos de texto de ejemplo, llamados nuevo y nuevo2, donde nuevo2 añade y quita algún texto de nuevo. Para crear el archivo patch que tenga la diferencia de los dos, usamos el comando diff -u nuevo nuevo2 > n.patch, guardando los cambios en un archivo .patch. Podemos ver el resultado en la Figura 3. 
+
+\begin{figure}[htpb]
+\includegraphics[height=11cm]{../../../../diff}
+\caption{Creación del patch.}
+\end{figure}
+
+\pagebreak
+
+Una vez creado el patch, queremos aplicarlo a nuevo para obtener nuevo2. Esto lo haremos con el comando patch, mediante la orden\\ patch nuevo <\ n.patch. Podemos ver el resultado en la siguiente figura. \footnote{\url{http://jungels.net/articles/diff-patch-ten-minutes.html}}
+
+\begin{figure}[htpb]
+\includegraphics[height=11cm]{../../../../patch}
+\caption{Aplicación del patch.}
+\end{figure}
 
 
 \subsection{Ejercicio 12}
-Realice la instalación de esta aplicación y pruebe a modificar algún
-parámetro de algún servicio. Muestre las capturas de el proceso de modificación y
-ponga de manifiesto el resultado.
+Realice la instalación de esta aplicación y pruebe a modificar algún parámetro de algún servicio. Muestre las capturas de el proceso de modificación y ponga de manifiesto el resultado.
+
 
 
 
