@@ -234,6 +234,20 @@ Podemos ver los cambios en las figuras 1 y 2.
 \subsection{Ejercicio 7}
 Configure una instancia de Linux de forma que pueda acceder remotamente (desde otra instancia o desde su anfitrión) sin introducir contraseña (Pistas: ssh-keygen, ssh-copy-id). Documente el proceso que ha seguido indicando y explicando los comandos utilizados así como posibles cambios en la configuración del servicio. Muestre con capturas de pantalla que puede conectar al servidor ssh remoto sin introducir contraseña.
 
+Intentaremos conectar desde el host Windows con un cliente ssh (WinSCP) a Ubuntu Server.
+
+Inicialmente, podremos conectar mediante el uso de la IP del servidor, introduciendo la contraseña del usuario (jose en mi caso). Tendremos el siguiente resultado (véase figura): 
+
+\pagebreak 
+
+\begin{figure}[htpb]
+\includegraphics[height=8cm]{../../../../contrasena}
+\caption{Conexión SSH.}
+\end{figure}
+
+
+Con la configuración de red adecuada y las IP's asignadas, generamos con ssh-keygen una contraseña asimétrica en Ubuntu Server. Esto producirá un archivo clave y clave.pub con la clave pública generada, que usaremos en el host Windows para poder acceder sin contraseña a Ubuntu Server. 
+
 
 \subsection{Ejercicio 8}
 En muchas ocasiones es necesario reiniciar un servicio para que tome los cambios en su configuración. Indique los comandos que puede emplear en Ubuntu y CentOS para hacerlo.
@@ -246,9 +260,24 @@ En Ubuntu, poniendo como ejemplo a apache, deberíamos ejecutar el comando: 'sud
 
 En general, iremos a donde el servicio esté alojado y ejecutaremos el comando asignado a cada uno para reiniciarlo. 
 
+Como otra opción, podemos ejecutar el comando sudo service 'servicio' restart. 
+
 \subsection{Ejercicio 9}
 Ponga de manifiesto el funcionamiento de PHP en Apache creando un fichero php que presente su nombre y apellidos y accediéndolo con un navegador web. Presente la captura de pantalla del resultado. Ponga de manifiesto el funcionamiento de MySQL accediendo a la BBDDs por defecto (mysql) y consultando los usuarios definidos en el sistema (select * from user). Documente con capturas de pantalla el acceso y resultado de la consulta.
 
+Realizamos la instalación con el comando apt-get install lamp-server
+
+PHP, en Ubuntu.\footnote{Al no disponer de entorno gráfico, y por tanto navegador, tanto en Ubuntu Server como CentOS, he realizado esta parte en Ubuntu 14.04, pues no se requería ninguna particularidad de los otros sistemas.}
+
+
+Una vez creado el fichero .php con nombre y apellidos, lo accedemos con Firefox (borrando previamente index.html). Vemos los resultados en la siguiente figura. \footnote{Cortada pues el resto es irrelevante.}
+
+\pagebreak
+
+\begin{figure}[htpb]
+\includegraphics[height=2.2cm]{../../../../php}
+\caption{Funcionamiento de PHP.}
+\end{figure}
 
 
 MySQL, en Ubuntu Server. 
@@ -264,13 +293,28 @@ Iniciamos MySQL con el comando mysql -u root -p, y una vez dentro, elegimos la b
 \subsection{Ejercicio 10}
 Para poner de manifiesto que el servidor está funcionando, acceda con un navegador web a su propio equipo (localhost). Cree una página HTML básica con su nombre y apellidos y publíquela en su servidor IIS. Muestre, con una captura de pantalla, como accede a dicha página con el navegador web.
 
+Una vez instalado IIS, creamos un archivo HTML básico, que podemos ver en la Figura 6 junto a la nueva página web creada en IIS. Abrimos el archivo con el navegador y vemos el contenido en la Figura 7.\footnote{\url{https://technet.microsoft.com/en-us/library/hh831515.aspx}}
+
+\begin{figure}[htpb]
+\includegraphics[height=10.8cm]{../../../../iisyarchivos}
+\caption{Configuración de IIS y datos.}
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[htpb]
+\includegraphics[height=12cm]{../../../../iis}
+\caption{Contenido del HTML.}
+\end{figure}
+
+\pagebreak
 
 \subsection{Ejercicio 11}
 Escriba un breve contenido en un fichero de texto plano, cópielo y modifíquelo ligeramente en un segundo archivo, por ejemplo, añadiendo un par de líneas. Calcule las diferencias entre el fichero original y el modificado. Indique los comandos necesarios para aplicar el parche así generado sobre el primer archivo y obtener el segundo. Documente el proceso con capturas de pantalla de cada paso.
 
 Ejercicio hecho en Ubuntu Server. 
 
-He creado dos archivos de texto de ejemplo, llamados nuevo y nuevo2, donde nuevo2 añade y quita algún texto de nuevo. Para crear el archivo patch que tenga la diferencia de los dos, usamos el comando diff -u nuevo nuevo2 > n.patch, guardando los cambios en un archivo .patch. Podemos ver el resultado en la Figura 3. 
+He creado dos archivos de texto de ejemplo, llamados nuevo y nuevo2, donde nuevo2 añade y quita algún texto de nuevo. Para crear el archivo patch que tenga la diferencia de los dos, usamos el comando diff -u nuevo nuevo2 > n.patch, guardando los cambios en un archivo .patch. Podemos ver el resultado en la Figura 8. 
 
 \begin{figure}[htpb]
 \includegraphics[height=11cm]{../../../../diff}
@@ -290,7 +334,35 @@ Una vez creado el patch, queremos aplicarlo a nuevo para obtener nuevo2. Esto lo
 \subsection{Ejercicio 12}
 Realice la instalación de esta aplicación y pruebe a modificar algún parámetro de algún servicio. Muestre las capturas de el proceso de modificación y ponga de manifiesto el resultado.
 
+En Apache, en la sección Directory Indexing, hemos incluido los archivos .php como ignorados. Podemos ver que el archivo que se nos pedía en el ejercicio 9 ya no se encuentra en el directorio, mientras que antes si estaba.\footnote{Consultada la documentación de webmin en \url{webmin.com}}
+
+\begin{figure}[htpb]
+\includegraphics[width=15cm]{../../../../webmin}
+\caption{Webmin.}
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[htpb]
+\includegraphics[height=9cm]{../../../../includedphp}
+\caption{Archivo php.}
+\end{figure}
+
+\pagebreak
+
+\begin{figure}[htpb]
+\includegraphics[height=8cm]{../../../../cambios}
+\caption{Cambios.}
+\end{figure}
 
 
+\pagebreak
+
+\begin{figure}[htpb]
+\includegraphics[height=8cm]{../../../../sinphp}
+\caption{PHP no detectado.}
+\end{figure}
+
+\pagebreak
 
 \end{document}
