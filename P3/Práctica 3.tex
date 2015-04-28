@@ -132,13 +132,28 @@
 \section{Resolución de los ejercicios}
 
 \subsection{Ejercicio 1}
-a) ¿En qué archivos se guarda registro de los paquetes instalados en sistema con los gestores de paquetes de Ubuntu y CentOS? Durante la práctica 2 instaló LAMP como un único paquete o instalando cada componente diferenciado. Busque en el archivo de registro las líneas correspondienter a la instalación y preséntelas. 
+a) ¿En qué archivos se guarda registro de los paquetes instalados en sistema con los gestores de paquetes de Ubuntu y CentOS? Durante la práctica 2 instaló LAMP como un único paquete o instalando cada componente diferenciado. Busque en el archivo de registro las líneas correspondientes a la instalación y preséntelas. 
 
 b) En el directorio /var/log es común encontrar archivos con extensiones en formato <número>.gz. Por ejemplo, .1.gz. Explique cómo se generan estos archivos y qué relación guardan entre ellos. 
 
 
+a) En linux, podemos verlo en el archivo /var/log/dpkg.log, y en CentOS en /var/log/yum.log, aunque también podemos utilizar el comando yum history para ver este registro. 
+En referencia a LAMP, se instalaron paquetes de apache, php y mysql. En la siguiente figura\footnote{Al ser demasiadas líneas relevantes, he tomado solo algunas de ellas. El procedimiento a seguir para buscar cualquier otra cosa es adecuar el comando grep a nuestros requerimientos.} vemos algunas de las líneas que reflejan esta instalación: 
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=9cm]{../../../../lamp}
+\caption{Instalación de LAMP (MySQL y PHP).}
+\end{figure}
+
+b) El directorio /var/log contiene archivos que almacenan ciertos datos del sistema y de distintos servicios/programas, especialmente datos de login. Para identificar el día al que corresponden estos archivos, se almacenan con un nombre que incluye el programa al que se refieren y el día al cual corresponden los datos. Mediante el uso de logrotate se van generando estos archivos, con logrotate normalmente incluído en un cron que se ejecuta diariamente.\footnote{http://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/var.html}
+
+
 \subsection{Ejercicio 2}
-Indique los pasos que ha seguido, comandos empleados y significado de los mismo. Junto a cada comando, presente las líneas del registro que son significativas en cada paso: indicación de fallo, reemplazo, inicio y finalización de la reconstrucción del RAID. 
+Indique los pasos que ha seguido, comandos empleados y significado de los mismos. Junto a cada comando, presente las líneas del registro que son significativas en cada paso: indicación de fallo, reemplazo, inicio y finalización de la reconstrucción del RAID.
+
+Para simular el fallo en un dispositivo utilizaremos el comando mdadm --manage --set-faulty\footnote{también se puede usar fail, con el mismo procedimiento. La orden marcará los dispositivos que le indiquemos como defectuosos y podrán removerse. Información tomada de man mdadm} /dev/sd0, que marcará el dispositivo como defectuoso. Acto seguido, con la orden mdadm --manage --remove /dev/sd0 quitaremos el dispositivo. 
+
 
 \subsection{Ejercicio 3}
 Añada a al configuración de cron una tarea que se ejecute diariamente y que copie una vez al día el contenido del directorio ~/codigo a ~/seguridad/\$fecha donde \$fecha es la fecha actual del sistema (puede usar el comando date). Otra tarea, ejecutará una vez al mes y reunirá todos los directorios diarios creados para el mes pasado en un archivo ~/seguridad/dirCodigo.<número>.gz. Presente las líneas de configuración de cron afectadas, explicando su significado. Si crea ficheros por lotes, presente y explique el código. 
@@ -158,6 +173,50 @@ b) Cree un recopilador de datos definido por el usuario (modo avanzado) que incl
 \item Almacene el resultado en el directorio Escritorio/logs
 \end{itemize}
 Incluya las capturas de pantalla de cada paso. 
+
+a) Para ejecutar el monitor accedemos de acuerdo a los pasos que se nos indican anteriormente en el guión. Una vez iniciado, esperamos a que se recopile la información, y nos vamos a la carpeta creada en el directorio C:/PerfLogs/System/Performance. Ahí nos encontramos distintos archivos que nos muestran la información recopilada: un archivo html llamado report y un gráfico llamado Performance Counter, de cual mostramos el contenido en la siguiente figura: 
+\pagebreak
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=9cm]{../../../../grafico}
+\caption{Gráfico generado.}
+\end{figure}
+
+El gráfico nos muestra una gran cantidad de datos. Debajo de este podemos ver una leyenda que nos indica todos los analizados. Podemos marcar o desmarcar todas las opciones para ver solo lo que consideremos relevante. Por ejemplo, podemos ver la carga del procesador, el número de llamadas al sistema por segundo o los fallos de conexión que han ocurrido. En las propiedades del gráfico se pueden modificar distintas variables, incluso pudiendo cambiar el tipo de gráfico (podemos hacerlo también en el menú superior). También tenemos una opción en el menú superior que nos permite monitorizar la actividad actual, en el primer icono que vemos (View Current Activity - Ctrl+T). Probando la opción y haciendo movimientos de ratón constantes se puede observar como sube el número de llamadas al sistema (debido a las interrupciones ocasionadas por el ratón). Dejando de hacer movimientos vemos como la línea que marca las llamadas al sistema vuelve a bajar. 
+
+En el archivo report.html podemos ver de una forma más estructurada los diferentes datos analizados, como el disco, la memoria principal o el uso de red. 
+
+b) Nos vamos al menú de crear un nuevo recopilador y nos aparece un menú de configuración. Inicialmente elegimos qué tipo de datos queremos recopilar, como vemos en la siguiente figura: 
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=7cm]{../../../../data1}
+\caption{Recopilación de datos.}
+\end{figure}
+
+Después elegimos qué datos específicos queremos recopilar. Tenemos diferentes ámbitos, de los cuales yo he elegido los que se nos pedían en la prácticas. Podemos ver el menú en la siguiente figura: 
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=6cm]{../../../../data2}
+\caption{Selección de datos.}
+\end{figure}
+
+Pasamos y aquí elegimos el intervalo de muestra, y lo fijamos a 15 segundos. 
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=15mm]{../../../../data3}
+\caption{Intervalo de muestra.}
+\end{figure}
+
+Seguimos avanzando y llegamos a la parte en la que elegimos la carpeta de destino. Seleccionamos la exigida como se muestra en la figura. 
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=2.5cm]{../../../../data5}
+\caption{Carpeta destino.}
+\end{figure}
 
 \subsection{Ejercicio 6}
 Elija uno de los sistemas de monitorización descritos en este apartado e instálelo. Describa los pasas seguidos así como posibles incidencias en la instalación que ha debido resolver. Monitorice uno o varios de sus servidores y presente ejemplos de algunas medidas que considere significativas, explicando su significado y los valores reales observados. 
