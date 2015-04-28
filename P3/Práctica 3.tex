@@ -152,7 +152,7 @@ b) El directorio /var/log contiene archivos que almacenan ciertos datos del sist
 \subsection{Ejercicio 2}
 Indique los pasos que ha seguido, comandos empleados y significado de los mismos. Junto a cada comando, presente las líneas del registro que son significativas en cada paso: indicación de fallo, reemplazo, inicio y finalización de la reconstrucción del RAID.
 
-Para simular el fallo en un dispositivo utilizaremos el comando mdadm --manage --set-faulty\footnote{también se puede usar fail, con el mismo procedimiento. La orden marcará los dispositivos que le indiquemos como defectuosos y podrán removerse. Información tomada de man mdadm} /dev/sd0, que marcará el dispositivo como defectuoso. Acto seguido, con la orden mdadm --manage --remove /dev/sd0 quitaremos el dispositivo. 
+Para simular el fallo en un dispositivo utilizaremos el comando sudo mdadm --manage --set-faulty\footnote{también se puede usar fail, con el mismo procedimiento. La orden marcará los dispositivos que le indiquemos como defectuosos y podrán removerse. Información tomada de man mdadm} /dev/md0, que marcará el dispositivo como defectuoso. Acto seguido, con la orden mdadm --manage --remove /dev/md0 quitaremos el dispositivo. 
 
 
 \subsection{Ejercicio 3}
@@ -162,6 +162,11 @@ Añada a al configuración de cron una tarea que se ejecute diariamente y que co
 a) Pruebe a ejecutar el comando, conectar un dispositivo USB y vuelva a ejecutar el comando. Copie y pegue las líneas que hacen mención al dispositivo conectado (considere usar dmesg | tail). 
 
 b) Explique las diferencias (si las hay) entre o consulaar el contenido de un archivo /var/log/dmesg?\footnote{Supongo un error en la redacción de la pregunta, y se lo notifico aquí para futuras correciones.}
+
+
+a) 
+
+b) Si ejecutamos dmesg | tail y cat /var/log/dmesg | tail vemos claramente que la salida es distinta, luego podemos afirmar que hay diferencias. Según la página de manual de dmesg, este comando 'muestra o controla el \textit{ring buffer} del kernel'. Sin embargo, el archivo /var/log/dmesg registra los mensajes del Kernel, normalmente desde el inicio del sistema.
 
 \subsection{Ejercicio 5}
 a) Ejecute el monitor de "System Performance" y muestre el resultado. Incluya capturas de pantalla y comente la información que aparece. 
