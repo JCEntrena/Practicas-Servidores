@@ -237,4 +237,19 @@ Elija uno de los sistemas de monitorización descritos en este apartado e instá
 \subsection{Ejercicio 7}
 Diseñe un pequeño modelo de BBDDs para un problema de su elección e impleméntelo en MySQL. También puede emplear un sistema de código abierto del que conozca su diseño de BBDDs. Plantee una combinación de consultas (al menos dos) que considere significativas y explique los resultados obtenidos en su "profile". Se valorará especialmente que sea capaz de introducir cambios en el diseño de tablas o en las consultas que mejore los resultados y que sepa justificar la mejora. 
 
+Aprovechando el modelo que tenía creado de la asignatura de Bases de Datos del primer cuatrimestre, he usado ese para realizar las consultas. 
+
+Tengo una tabla proveedor que incluye un código, un nombre, una ciudad y un estatus (valor entero), y una tabla pieza que incluye un código, un nombre, un color, un peso y una ciudad. He hecho una consulta para elegir una pieza si su ciudad está en el conjunto de ciudades de los proveedores que tienen sus estatus entre unos determinados valores, que la pongo a continuación: 
+
+select * from pieza where pieza.ciudad in (select ciudad from proveedor where status<4 or status>8)
+
+Primero he hecho la consulta, y al ver el profiler con la orden show profiles me da este resultado: 
+
+ Query\_ID | Duration   | Query \\
+ |        1 | 0.00008000 | select * from pieza where pieza.ciudad in (select ciudad from proveedor where status<4 or status>8) 
+ 
+Que nos indica la ID de la petición y la duración de la consulta en segundos. Introduciendo un índice sobre los status dentro de la tabla proveedor podemos conseguir reducir los tiempos de ejecución. En mi caso la salida ha sido la siguiente: 
+
+ 4 | 0.00006750 | select * from pieza where pieza.ciudad in (select ciudad from proveedor where status<4 or status>8) 
+
 \end{document}
