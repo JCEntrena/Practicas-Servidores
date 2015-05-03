@@ -164,7 +164,15 @@ a) Pruebe a ejecutar el comando, conectar un dispositivo USB y vuelva a ejecutar
 b) Explique las diferencias (si las hay) entre o consulaar el contenido de un archivo /var/log/dmesg?\footnote{Supongo un error en la redacción de la pregunta, y se lo notifico aquí para futuras correciones.}
 
 
-a) 
+a) He conectado mi teléfono móvil mediante un cable USB, y se han obtenido las siguientes líneas: 
+
+[ 1001.099346] usb 3-2: new high-speed USB device number 2 using xhci\_hcd\\
+[ 1001.116845] usb 3-2: New USB device found, idVendor=04e8, idProduct=6860\\
+[ 1001.116855] usb 3-2: New USB device strings: Mfr=2, Product=3, SerialNumber=4\\
+[ 1001.116861] usb 3-2: Product: SAMSUNG\_Android\\
+[ 1001.116866] usb 3-2: Manufacturer: SAMSUNG\\
+[ 1001.116870] usb 3-2: SerialNumber: 0009603c6f1d2f\\
+
 
 b) Si ejecutamos dmesg | tail y cat /var/log/dmesg | tail vemos claramente que la salida es distinta, luego podemos afirmar que hay diferencias. Según la página de manual de dmesg, este comando 'muestra o controla el \textit{ring buffer} del kernel'. Sin embargo, el archivo /var/log/dmesg registra los mensajes del Kernel, normalmente desde el inicio del sistema.
 
