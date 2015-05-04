@@ -276,12 +276,13 @@ Seguimos avanzando y llegamos a la parte en la que elegimos la carpeta de destin
 \subsection{Ejercicio 6}
 Elija uno de los sistemas de monitorización descritos en este apartado e instálelo. Describa los pasas seguidos así como posibles incidencias en la instalación que ha debido resolver. Monitorice uno o varios de sus servidores y presente ejemplos de algunas medidas que considere significativas, explicando su significado y los valores reales observados.
 
-He elegido instalar Ganglia, porque la instalación parecía sencilla, me permitía instalarlo en Ubuntu Server 
+He elegido instalar Ganglia, porque la instalación parecía sencilla, me permitía instalarlo en Ubuntu. 
+
+Efectuamos la instalación con el comando sudo apt-get install ganglia-monitor rrdtool gmetad ganglia-webfrontend
+
+En la instalación se nos preguntará si queremos reiniciar el servicio apache2, pues parece ser necesario para ello. Le damos a aceptar y dejamos a la instalación terminar. Ahora es necesario configurar Ganglia. Copiamos la configuración de apache de  /etc/ganglia-webfrontend/apache.conf a /etc/apache2/sites-enabled/ganglia.conf, y modificaremos el archivo  /etc/ganglia/gmetad.conf para definir data\_source "my cluster" de localhost a 50 192.168.56.10:8649. Seguidamente cambiamos el nombre del cluster en /etc/ganglia/gmond.conf, guardamos los cambios e iniciamos los servicios ganglia-monitor, gmetad y reiniciamos apache2 con los comandos necesarios\footnote{sudo /etc/init.d/ganglia-monitor start, sudo /etc/init.d/gmetad start, sudo /etc/init.d/apache2 restart}. Una vez hecho esto, accedemos a la dirección http://127.0.0.1/ganglia/ y tenemos el monitor de Ganglia. 
 
 
-He elegido instalar Zabbix porque me permitía instalarlo en Ubuntu, la instalación parecía sencilla y venía explicado en su web\footnote{\url{https://www.zabbix.com/documentation/2.4/manual/installation/install\_from\_packages\#debian\_ubuntu}}. 
-
-Una vez seguidos los pasos de la instalación, Zabbix nos pide que configuremos una base de datos, introduciendo unas contraseñas. Se seguirán instalando paquetes y creando archivos y datos relativos a la base de datos. En el proceso de instalación es reiniciado el servicio apache automáticamente. No hay que realizar nada más, la instalación finaliza correctamente. 
 
 
 \subsection{Ejercicio 7}
