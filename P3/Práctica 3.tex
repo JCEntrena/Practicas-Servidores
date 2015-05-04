@@ -159,7 +159,7 @@ Tras hacer esta combinación de comandos y ver que el resultado ejecutando la or
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[height=9cm]{../../../faulty}
+\includegraphics[height=8cm]{../../../faulty}
 \caption{Faulty marcado.}
 \end{figure}
 
@@ -170,8 +170,6 @@ Tras hacer esta combinación de comandos y ver que el resultado ejecutando la or
 \end{figure}
 
 Una vez marcado el error, procedemos a eliminar /dev/sda1 con la orden mdadm --manage /dev/md0 --remove /dev/sda1. Podemos ver que se ha hecho con éxito en el archivo /proc/mdstat (figura) 
-
-\pagebreak
 
 \begin{figure}[htpb]
 \centering
@@ -194,7 +192,17 @@ Añada a al configuración de cron una tarea que se ejecute diariamente y que co
 
 Incluyo capturas de pantalla de los scripts de bash creados: 
 
-\includegraphics{../../../Cap1}
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=4cm]{../../../Cap1}
+\caption{Copia de los archivos.}
+\end{figure}
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=4cm]{../../../Cap2}
+\caption{Compresión de las carpetas.}
+\end{figure}
 
 Para ejecutar los scripts diaria y mensualmente añadimos las siguientes líneas al archivo /etc/crontab: 
 
@@ -284,7 +292,20 @@ En la instalación se nos preguntará si queremos reiniciar el servicio apache2,
 
 Podemos monitorizar, por ejemplo, el tráfico de datos que entra y sale de nuestra máquina. Tenemos diferentes gráficos que nos lo muestran en intervalos de tiempo distintos, como se puede ver en la siguiente figura: 
 
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=7cm]{../../../inicio}
+\caption{Gráficos de tráfico web.}
+\end{figure}
+
+
 He intentado que se muestre algún cambio en la gráfica, por lo que he accedido a diversas páginas que requieran bastante descarga (páginas de imágenes, youtube, etc...), y se ve como efectivamente se produce un cambio bastante significativo en la grafica. En la siguiente figura podemos ver los valores de la última hora, y como sube considerablemente hasta alcanzar los Megas, y luego, al cerrar todas las conexiones, vuelve a bajar a los bits. 
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=5cm]{../../../fin}
+\caption{Gráfico horario con cambios.}
+\end{figure}
 
 
 \subsection{Ejercicio 7}
