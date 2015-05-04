@@ -192,6 +192,18 @@ Una vez finalizado el proceso de reconstrucción ya volvemos a tener el RAID ope
 \subsection{Ejercicio 3}
 Añada a al configuración de cron una tarea que se ejecute diariamente y que copie una vez al día el contenido del directorio ~/codigo a ~/seguridad/\$fecha donde \$fecha es la fecha actual del sistema (puede usar el comando date). Otra tarea, ejecutará una vez al mes y reunirá todos los directorios diarios creados para el mes pasado en un archivo ~/seguridad/dirCodigo.<número>.gz. Presente las líneas de configuración de cron afectadas, explicando su significado. Si crea ficheros por lotes, presente y explique el código. 
 
+Incluyo capturas de pantalla de los scripts de bash creados: 
+
+
+Para ejecutar los scripts diaria y mensualmente añadimos las siguientes líneas al archivo /etc/crontab: 
+
+Ejecución diaria:\\
+00 00   * * *   root    bash /home/jose/ejecuta.sh\\
+Ejecución mensual:\\
+00 01   1 * *   root    bash /home/jose/ejecutames.sh
+
+Yo lo he hecho manualmente con un editor de texto, pero se puede hacer con la orden crontab -e\footnote{Manual de crontab.}
+
 \subsection{Ejercicio 4}
 a) Pruebe a ejecutar el comando, conectar un dispositivo USB y vuelva a ejecutar el comando. Copie y pegue las líneas que hacen mención al dispositivo conectado (considere usar dmesg | tail). 
 
