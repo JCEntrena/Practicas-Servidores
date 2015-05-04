@@ -142,7 +142,7 @@ En referencia a LAMP, se instalaron paquetes de apache, php y mysql. En la sigui
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[height=9cm]{../../../../lamp}
+\includegraphics[height=9cm]{../../../lamp}
 \caption{Instalación de LAMP (MySQL y PHP).}
 \end{figure}
 
@@ -154,6 +154,40 @@ Indique los pasos que ha seguido, comandos empleados y significado de los mismos
 
 Para simular el fallo en un dispositivo utilizaremos el comando sudo mdadm --manage --set-faulty\footnote{también se puede usar fail, con el mismo procedimiento. La orden marcará los dispositivos que le indiquemos como defectuosos y podrán removerse. Información tomada de man mdadm} /dev/md0, que marcará el dispositivo como defectuoso. Acto seguido, con la orden mdadm --manage --remove /dev/md0 quitaremos el dispositivo. 
 
+Tras hacer esta combinación de comandos y ver que el resultado ejecutando la orden que se nos proporciona (watch -n2 cat /proc/mdstat) y ver que no había cambios, he buscado qué hacer para ver si el dispositivo se ha desconectado correctamente y he encontrado la orden mdadm --detail /etc/md0. Ejecutándola después de las anteriores veo que el dispositivo sigue tal cual. Explorando más mdadm veo que tengo que usar la orden mdadm --manage /dev/md0 --set-faulty /dev/sda1. Ahora sí se ha marcado el fallo, que podemos ver en las dos siguientes figuras. 
+\pagebreak
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=9cm]{../../../faulty}
+\caption{Faulty marcado.}
+\end{figure}
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=3cm]{../../../vista1}
+\caption{Archivo /proc/mdstat.}
+\end{figure}
+
+Una vez marcado el error, procedemos a eliminar /dev/sda1 con la orden mdadm --manage /dev/md0 --remove /dev/sda1. Podemos ver que se ha hecho con éxito en el archivo /proc/mdstat (figura) 
+
+\pagebreak
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=3cm]{../../../vista2}
+\caption{Eliminado sda1.}
+\end{figure}
+
+Seguidamente, volvemos a añadir /dev/sda1 con el comando mdadm --manage /dev/md0 --add /dev/sda. Al ver que está pasando en /proc/mdstat, vemos que se está reconstruyendo el RAID (el proceso lleva un tiempo, alrededor de 7-8 minutos). Podemos verlo en la siguiente figura.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=3cm]{../../../vista3}
+\caption{Recuperación de sda1.}
+\end{figure}
+
+Una vez finalizado el proceso de reconstrucción ya volvemos a tener el RAID operativo. 
 
 \subsection{Ejercicio 3}
 Añada a al configuración de cron una tarea que se ejecute diariamente y que copie una vez al día el contenido del directorio ~/codigo a ~/seguridad/\$fecha donde \$fecha es la fecha actual del sistema (puede usar el comando date). Otra tarea, ejecutará una vez al mes y reunirá todos los directorios diarios creados para el mes pasado en un archivo ~/seguridad/dirCodigo.<número>.gz. Presente las líneas de configuración de cron afectadas, explicando su significado. Si crea ficheros por lotes, presente y explique el código. 
@@ -166,12 +200,12 @@ b) Explique las diferencias (si las hay) entre o consulaar el contenido de un ar
 
 a) He conectado mi teléfono móvil mediante un cable USB, y se han obtenido las siguientes líneas: 
 
-[ 1001.099346] usb 3-2: new high-speed USB device number 2 using xhci\_hcd\\
-[ 1001.116845] usb 3-2: New USB device found, idVendor=04e8, idProduct=6860\\
-[ 1001.116855] usb 3-2: New USB device strings: Mfr=2, Product=3, SerialNumber=4\\
-[ 1001.116861] usb 3-2: Product: SAMSUNG\_Android\\
-[ 1001.116866] usb 3-2: Manufacturer: SAMSUNG\\
-[ 1001.116870] usb 3-2: SerialNumber: 0009603c6f1d2f\\
+(1001.099346) usb 3-2: new high-speed USB device number 2 using xhci\_hcd\\
+(1001.116845) usb 3-2: New USB device found, idVendor=04e8, idProduct=6860\\
+(1001.116855) usb 3-2: New USB device strings: Mfr=2, Product=3, SerialNumber=4\\
+(1001.116861) usb 3-2: Product: SAMSUNG\_Android\\
+(1001.116866) usb 3-2: Manufacturer: SAMSUNG\\
+(1001.116870) usb 3-2: SerialNumber: 0009603c6f1d2f\\
 
 
 b) Si ejecutamos dmesg | tail y cat /var/log/dmesg | tail vemos claramente que la salida es distinta, luego podemos afirmar que hay diferencias. Según la página de manual de dmesg, este comando 'muestra o controla el \textit{ring buffer} del kernel'. Sin embargo, el archivo /var/log/dmesg registra los mensajes del Kernel, normalmente desde el inicio del sistema.
@@ -191,7 +225,7 @@ a) Para ejecutar el monitor accedemos de acuerdo a los pasos que se nos indican 
 \pagebreak
 \begin{figure}[htpb]
 \centering
-\includegraphics[height=9cm]{../../../../grafico}
+\includegraphics[height=9cm]{../../../grafico}
 \caption{Gráfico generado.}
 \end{figure}
 
@@ -203,7 +237,7 @@ b) Nos vamos al menú de crear un nuevo recopilador y nos aparece un menú de co
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[height=7cm]{../../../../data1}
+\includegraphics[height=7cm]{../../../data1}
 \caption{Recopilación de datos.}
 \end{figure}
 
@@ -211,7 +245,7 @@ Después elegimos qué datos específicos queremos recopilar. Tenemos diferentes
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[height=6cm]{../../../../data2}
+\includegraphics[height=6cm]{../../../data2}
 \caption{Selección de datos.}
 \end{figure}
 
@@ -219,22 +253,17 @@ Pasamos y aquí elegimos el intervalo de muestra, y lo fijamos a 15 segundos.
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[height=15mm]{../../../../data3}
+\includegraphics[height=15mm]{../../../data3}
 \caption{Intervalo de muestra.}
 \end{figure}
 
 Seguimos avanzando y llegamos a la parte en la que elegimos la carpeta de destino. Seleccionamos la exigida como se muestra en la figura. 
 
-\begin{figure}[htpb]
-\centering
-\includegraphics[height=2.5cm]{../../../../data5}
-\caption{Carpeta destino.}
-\end{figure}
 
 \subsection{Ejercicio 6}
 Elija uno de los sistemas de monitorización descritos en este apartado e instálelo. Describa los pasas seguidos así como posibles incidencias en la instalación que ha debido resolver. Monitorice uno o varios de sus servidores y presente ejemplos de algunas medidas que considere significativas, explicando su significado y los valores reales observados.
 
-He elegido instalar Zabbix porque me permitía instalarlo en Ubuntu, la instalación parecía sencilla y venía explicado en su web\footnote{https://www.zabbix.com/documentation/2.4/manual/installation/install\_from\_packages#debian\_ubuntu}. 
+He elegido instalar Zabbix porque me permitía instalarlo en Ubuntu, la instalación parecía sencilla y venía explicado en su web\footnote{\url{https://www.zabbix.com/documentation/2.4/manual/installation/install\_from\_packages\#debian\_ubuntu}}. 
 
 Una vez seguidos los pasos de la instalación, Zabbix nos pide que configuremos una base de datos, introduciendo unas contraseñas. Se seguirán instalando paquetes y creando archivos y datos relativos a la base de datos. En el proceso de instalación es reiniciado el servicio apache automáticamente. No hay que realizar nada más, la instalación finaliza correctamente. 
 
@@ -246,16 +275,16 @@ Aprovechando el modelo que tenía creado de la asignatura de Bases de Datos del 
 
 Tengo una tabla proveedor que incluye un código, un nombre, una ciudad y un estatus (valor entero), y una tabla pieza que incluye un código, un nombre, un color, un peso y una ciudad. He hecho una consulta para elegir una pieza si su ciudad está en el conjunto de ciudades de los proveedores que tienen sus estatus entre unos determinados valores, que la pongo a continuación: 
 
-select * from pieza where pieza.ciudad in (select ciudad from proveedor where status<4 or status>8)
+select * from pieza where pieza.ciudad in (select ciudad from proveedor where status<4 or status>8) (*)
 
 Primero he hecho la consulta, y al ver el profiler con la orden show profiles me da este resultado: 
 
  Query\_ID | Duration   | Query \\
- |        1 | 0.00008000 | select * from pieza where pieza.ciudad in (select ciudad from proveedor where status<4 or status>8) 
+ |        1 | 0.00008000 | Consulta (*)
  
 Que nos indica la ID de la petición y la duración de la consulta en segundos. Introduciendo un índice sobre los status dentro de la tabla proveedor podemos conseguir reducir los tiempos de ejecución, pues la selección de los proveedores en base al status se agilizaría considerablemente. En mi caso la salida ha sido la siguiente: 
 
- 4 | 0.00006750 | select * from pieza where pieza.ciudad in (select ciudad from proveedor where status<4 or status>8) 
+ 4 | 0.00006750 | Consulta (*)
 
 Cabe destacar que al ser una base de datos pequeña, las diferencias pueden no ser significativas, aunque si tuviera un tamaño considerable el índice supondría una mejora notable. 
 
