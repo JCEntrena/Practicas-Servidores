@@ -282,7 +282,9 @@ Efectuamos la instalación con el comando sudo apt-get install ganglia-monitor r
 
 En la instalación se nos preguntará si queremos reiniciar el servicio apache2, pues parece ser necesario para ello. Le damos a aceptar y dejamos a la instalación terminar. Ahora es necesario configurar Ganglia. Copiamos la configuración de apache de  /etc/ganglia-webfrontend/apache.conf a /etc/apache2/sites-enabled/ganglia.conf, y modificaremos el archivo  /etc/ganglia/gmetad.conf para definir data\_source "my cluster" de localhost a 50 192.168.56.10:8649. Seguidamente cambiamos el nombre del cluster en /etc/ganglia/gmond.conf, guardamos los cambios e iniciamos los servicios ganglia-monitor, gmetad y reiniciamos apache2 con los comandos necesarios\footnote{sudo /etc/init.d/ganglia-monitor start, sudo /etc/init.d/gmetad start, sudo /etc/init.d/apache2 restart}. Una vez hecho esto, accedemos a la dirección http://127.0.0.1/ganglia/ y tenemos el monitor de Ganglia. 
 
+Podemos monitorizar, por ejemplo, el tráfico de datos que entra y sale de nuestra máquina. Tenemos diferentes gráficos que nos lo muestran en intervalos de tiempo distintos, como se puede ver en la siguiente figura: 
 
+He intentado que se muestre algún cambio en la gráfica, por lo que he accedido a diversas páginas que requieran bastante descarga (páginas de imágenes, youtube, etc...), y se ve como efectivamente se produce un cambio bastante significativo en la grafica. En la siguiente figura podemos ver los valores de la última hora, y como sube considerablemente hasta alcanzar los Megas, y luego, al cerrar todas las conexiones, vuelve a bajar a los bits. 
 
 
 \subsection{Ejercicio 7}
