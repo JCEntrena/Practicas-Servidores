@@ -137,8 +137,23 @@ Instale Phoronix Suite, seleccione un benchmar de entre los disponibles, descár
 \subsection{Ejercicio 2}
 Instale una de las aplicaciones de benchmark: SisoftSandra o Aida. Seleccione un benchmark y ejecútelo. Describa el propósito del benchmark y su interés en el mismo. Explique razonadamente el significado de los resultados obtenidos. 
 
+He instalado Aida, simplemente yendo a la página de descarga, descargando el instalador y ejecutándolo. 
+ 
+Una vez iniciada la versión de prueba, vamos al apartado de benchmark y seleccionamos el que queremos dentro de los disponibles. Yo he elegido uno de copia en memoria porque me interesaba ver la comparación con el resto de memorias de los datos que trae el programa. Podemos ver los resultados en la siguiente figura: 
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=9cm]{../../../../BW}
+\caption{Recopilación de datos.}
+\end{figure}
+
+Podemos ver los resultados ordenados de mejor a peor, contando con varios correspondientes a máquinas ajenas a la nuestra (datos que vienen con el programa y que sirven para comparar nuestra máquina con otras) y el resultado de nuestra máquina, con algunas características de ellas (en algunos lugares no nos deja verlas, sino que pone [TRIAL VERSION]). El primer dato que vemos será el resultado del benchmark, que en este caso se refiere a la velocidad de copia en memoria. 
+
 \subsection{Ejercicio 3}
 Desarrolle un benchmark. 
 
+a) Explicación
+
+He decidido crear un benchmark que analice la velocidad de transferencia de archivos a dispositivos externos. En particular, voy a considerar una tarjeta SD, un lápiz USB y mi teléfono móvil (conectado por USB al ordenador). Voy a analizar la transferencia de archivos en dos versiones: un archivo de un tamaño considerable (alrededor de 1 GB) y una gran cantidad de archivos de pequeño tamaño, pero que en conjunto sumen un tamaño considerable (alrededor de 750 MB). El interés de este benchmark es conocer que método de transferencia es más veloz que los otros, y comprobar su comportamiento frente a distintos tamaños de archivo (por ejemplo, puede no ser lo mismo intentar pasar una imagen ISO de gran tamaño a un pendrive que muchas fotos de un tamaño más reducido, y que distintos elementos se comporten de forma diferente en función del tamaño de archivo). Analizaré independientemente los dos escenarios descritos, esto es, un único archivo grande o muchos archivos pequeños.  
 
 \end{document}
