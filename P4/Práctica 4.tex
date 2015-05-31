@@ -154,9 +154,9 @@ Desarrolle un benchmark.
 
 a) Explicación
 
-He decidido crear un benchmark que analice la velocidad de transferencia de archivos a dispositivos externos. En particular, voy a considerar una tarjeta SD, un lápiz USB y mi teléfono móvil (conectado por USB al ordenador). Voy a analizar la transferencia de archivos para un archivo de gran tamaño (1.5GB). En mi caso, he usado una imagen ISO, que satisface lo que queremos. El interés de este benchmark es conocer que método de transferencia es más veloz que los otros, y si esta diferencia es verdaderamente representativa. 
+He decidido crear un benchmark que analice la velocidad de transferencia de archivos a distintos dispositivos, tanto externos como internos. En particular, voy a considerar una tarjeta SD (conectada mendiante un adaptador), un lápiz USB, el disco duro en el que me encuentro trabajando y una partición del disco duro en la que tengo otro sistema operativo, previamente montada. Voy a analizar la transferencia de archivos para un archivo de gran tamaño (1.5GB), que en mi caso es usado una imagen ISO. El interés de este benchmark es conocer que método de transferencia es más veloz que los otros, y si esta diferencia es verdaderamente representativa, aunque casi con total seguridad los dispositivos externos sean más lentos que los internos. No obstante, puede ser de interés saber si esta diferencia es realmente grande, si existe una gran diferencia entre una copia local y otra a una partición de otro S.O., y también si la velocidad para tarjetas SD y USB es distinta de una forma significativa. 
 
-Para el benchmark utilizaré un script en bash, pues me permite realizar la copia del archivo con una única orden, y también medir los tiempos y dirigirlos a un archivo .csv de manera sencilla. El benchmark tomará 4 argumentos: el archivo a copiar y las rutas de los tres dispositivos, que tendrán que estar previamente montados.
+Para el benchmark utilizaré un script en bash, pues me permite realizar la copia del archivo con una única orden, y también medir los tiempos y dirigirlos a un archivo .csv de manera sencilla. El benchmark tomará 5 argumentos: el archivo a copiar y las rutas de los cuatro destinos, que tendrán que estar previamente montados (salvo la copia local, que no lo necesita). 
 
 
 
