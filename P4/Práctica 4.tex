@@ -132,7 +132,13 @@
 \section{Resolución de los ejercicios}
 
 \subsection{Ejercicio 1}
-Instale Phoronix Suite, seleccione un benchmar de entre los disponibles, descárguelo y ejecútelo. Describa el propósito del benchmar y su interés en el mismo. Explique razonadamente el significado de los resultados obtenidos. 
+Instale Phoronix Suite, seleccione un benchmark de entre los disponibles, descárguelo y ejecútelo. Describa el propósito del benchmar y su interés en el mismo. Explique razonadamente el significado de los resultados obtenidos. 
+
+Para instalar Phoronix Suite en Ubuntu, lo hago con la orden sudo apt-get install phoronix-test-suite. Una vez instalado el paquete, en la página de referencia se nos dice que editemos el archivo '/usr/share/phoronix-test-suite/pts-core/external-test-dependencies/scripts/install-ubuntu-packages.sh'. Realizado el cambio que se nos dice, ejecutamos la órden 'phoronix-test-suite list-available-suites' y buscamos un benckmark que queramos ejecutar. En mi caso voy a elegir el benchmark "chess", ya que las dependencias necesarias para poder ejecutarlo eran pocas y no quería tener que instalas demasiadas (para otros benchmarks, como el de disco, era necesario casi 1GB de instalación extra). La ejecución se hará mediante el comando 'phoronix-test-suite benchmark chess' ejecutamos el benchmark. 
+
+Una vez finalizado el benchmark, Phoronix nos pregunta si queremos ver los resultados en el navegador web. En la siguiente figura se puede ver un extracto del resultado: 
+
+Toda la información necesaria ha sido sacada de \url{https://wiki.ubuntu.com/PhoronixTestSuite}
 
 \subsection{Ejercicio 2}
 Instale una de las aplicaciones de benchmark: SisoftSandra o Aida. Seleccione un benchmark y ejecútelo. Describa el propósito del benchmark y su interés en el mismo. Explique razonadamente el significado de los resultados obtenidos. 
