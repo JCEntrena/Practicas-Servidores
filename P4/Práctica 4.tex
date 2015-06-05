@@ -136,7 +136,19 @@ Instale Phoronix Suite, seleccione un benchmark de entre los disponibles, descá
 
 Para instalar Phoronix Suite en Ubuntu, lo hago con la orden sudo apt-get install phoronix-test-suite. Una vez instalado el paquete, en la página de referencia se nos dice que editemos el archivo '/usr/share/phoronix-test-suite/pts-core/external-test-dependencies/scripts/install-ubuntu-packages.sh'. Realizado el cambio que se nos dice, ejecutamos la órden 'phoronix-test-suite list-available-suites' y buscamos un benckmark que queramos ejecutar. En mi caso voy a elegir el benchmark "chess", ya que las dependencias necesarias para poder ejecutarlo eran pocas y no quería tener que instalas demasiadas (para otros benchmarks, como el de disco, era necesario casi 1GB de instalación extra). La ejecución se hará mediante el comando 'phoronix-test-suite benchmark chess' ejecutamos el benchmark. 
 
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=8cm]{../../../benchmarks}
+\caption{Algunos de los benchmarks disponibles.}
+\end{figure}
+
 Una vez finalizado el benchmark, Phoronix nos pregunta si queremos ver los resultados en el navegador web. En la siguiente figura se puede ver un extracto del resultado: 
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=5cm]{../../../navegador}
+\caption{Resultados.}
+\end{figure}
 
 Toda la información necesaria ha sido sacada de \url{https://wiki.ubuntu.com/PhoronixTestSuite}
 
@@ -149,7 +161,7 @@ Una vez iniciada la versión de prueba, vamos al apartado de benchmark y selecci
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[height=9cm]{../../../../BW}
+\includegraphics[height=9cm]{../../../BW}
 \caption{Recopilación de datos.}
 \end{figure}
 
@@ -164,6 +176,42 @@ He decidido crear un benchmark que analice la velocidad de transferencia de arch
 
 Para el benchmark utilizaré un script en bash, pues me permite realizar la copia del archivo con una única orden, y también medir los tiempos y dirigirlos a un archivo .csv de manera sencilla. El benchmark tomará 5 argumentos: el archivo a copiar y las rutas de los cuatro destinos, que tendrán que estar previamente montados (salvo la copia local, que no lo necesita). 
 
+b) Ejecución y análisis de resultados. 
 
+Una vez ejecutado el benchmark, obtenemos los resultados en un archivo llamado 'resultados.csv'. Los resultados han sido los siguientes (después de tomar tres medidas y calcular la media)\footnote{Los datos estaban recogidos en nanosegundos, aunque los he modificado para poder observarlos mejor. De igual forma, los datos han sido recogidos por separado y puestos en común en un archivo .csv, ya que el script bash elimina los resultados anteriores. Después de ejecutar el benchmark 3 veces he tomado la media aritmética de los resultados. Todo esto se incluye en un archivo de Excel adjunto al trabajo.}: 
+
+\begin{tabbing}
+\hspace*{4cm} \= \hspace*{6cm} \kill
+Destino \> Tiempo (en segundos) \\
+Tarjeta SD \> 163.990067 \\
+USB \> 222.8941951 \\
+Disco Duro local \> 56.75140534 \\
+Disco Duro montado \> 56.00242117 \\
+\end{tabbing}
+
+Con la ayuda de RStudio analizaremos los datos para comprobar si la diferencia es significativa estadísticamente, mediante un test ANOVA. Nos basaremos en un script en R para el cálculo de estos datos. En la siguiente figura podemos ver el resultado\footnote{El script se incluye también en los archivos adjuntos a la práctica.}: 
+
+\pagebreak
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=8cm]{../../../R}
+\caption{Análisis de los 4 factores.}
+\end{figure}
+
+Podemos ver que el resultado del test es que los datos son diferentes con un nivel de con confianza de casi el 100\%, ya que P(>F) es casi 0. En particular podemos afirmar que son distintos con un 95\% de nivel de confianza. 
+
+Ahora vamos a comprobar los dos datos más parecidos, de transferencia entre los dos discos. Mediante el mismo script de R modificado para solo dos datos, tenemos el siguiente resultado (ver figura). 
+  
+ 
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=8cm]{../../../R2}
+\caption{Análisis de los 2 factores más parecidos.}
+\end{figure}
+
+\pagebreak
+
+En este caso, podemos ver que P(>F) = 0.103, luego no estamos en condiciones de poder afirmar que son distintos con un nivel de confianza del 95\%. Por tanto, no podemos afirmar que sea distinto transferir archivos a un disco duro en el que estemos trabajando que otro con un S.O. distinto que hayamos montado. 
 
 \end{document}
